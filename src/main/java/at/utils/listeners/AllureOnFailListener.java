@@ -25,6 +25,7 @@ public final class AllureOnFailListener implements ITestListener {
         log.info(String.format("\033[31;1m TEST %s FAILURE  \033[0m", result.getMethod().getDescription()));
         try {
             DriverUtils.screenshot();
+            DriverUtils.screenshotFull();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,6 +36,7 @@ public final class AllureOnFailListener implements ITestListener {
         log.info(String.format("TEST SKIPPED - %s", result.getMethod().getDescription()));
         try {
             DriverUtils.screenshot();
+            DriverUtils.screenshotFull();
         } catch (IOException e) {
             e.printStackTrace();
         }    }
@@ -43,6 +45,7 @@ public final class AllureOnFailListener implements ITestListener {
     public void onTestFailedButWithinSuccessPercentage(final ITestResult result) {
         try {
             DriverUtils.screenshot();
+            DriverUtils.screenshotFull();
         } catch (IOException e) {
             e.printStackTrace();
         }    }

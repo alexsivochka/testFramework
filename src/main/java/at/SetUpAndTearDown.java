@@ -10,10 +10,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,7 +24,7 @@ import static java.util.Optional.ofNullable;
 public class SetUpAndTearDown {
 
     private static final Logger LOGGER = Logger.getLogger(SetUpAndTearDown.class.getName());
-    private final SimpleConfig config = ConfigFactory.create(SimpleConfig.class);
+    private final SimpleConfig config = ConfigFactory.create(SimpleConfig.class,  System.getProperties());
     private final String browser = config.browser();
 
     @BeforeSuite(alwaysRun = true)
@@ -49,7 +46,7 @@ public class SetUpAndTearDown {
         Configuration.startMaximized = true;
     }
 
-    @BeforeTest(alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void openMainPage() {
         open(config.homePage());
     }

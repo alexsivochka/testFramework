@@ -5,7 +5,7 @@ import static org.aeonbits.owner.Config.*;
 
 @LoadPolicy(LoadType.MERGE)
 @Sources({
-        "classpath:config.properties",
+        "classpath:config.properties"
 })
 
 public interface SimpleConfig extends Config {

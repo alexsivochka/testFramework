@@ -12,11 +12,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <suiteFile>testng.xml</suiteFile>
         <suiteName>TestSuite</suiteName>
-        <selenideVersion>5.19.0</selenideVersion>
+        <selenideVersion>5.22.0</selenideVersion>
         <allure.version>2.13.2</allure.version>
-        <aspectj.version>1.8.13</aspectj.version>
-        <compiler.plugin.version>3.7.0</compiler.plugin.version>
-        <surefire.plugin.version>2.20.1</surefire.plugin.version>
+        <aspectj.version>1.9.2</aspectj.version>
+        <compiler.plugin.version>3.8.0</compiler.plugin.version>
+        <surefire.plugin.version>2.22.0</surefire.plugin.version>
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
     </properties>
 
@@ -28,13 +28,11 @@
             <version>${selenideVersion}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -43,25 +41,17 @@
             <scope>test</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.assertthat</groupId>-->
-<!--            <artifactId>selenium-shutterbug</artifactId>-->
-<!--            <version>1.5</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.assertthat</groupId>
+            <artifactId>selenium-shutterbug</artifactId>
+            <version>0.9.3</version>
+        </dependency>
 
-        <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot -->
         <dependency>
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
             <version>1.5.4</version>
         </dependency>
-
-
-        <!--        <dependency>-->
-<!--            <groupId>io.github.bonigarcia</groupId>-->
-<!--            <artifactId>webdrivermanager</artifactId>-->
-<!--            <version>3.3.0</version>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.testng</groupId>
@@ -87,7 +77,6 @@
             <version>2.2</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -112,29 +101,45 @@
             <version>2.2.2</version>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.jayway.restassured</groupId>-->
-        <!--            <artifactId>rest-assured</artifactId>-->
-        <!--            <version>2.9.0</version>-->
-        <!--        </dependency>-->
-
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>4.0.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
-            <groupId>org.sql2o</groupId>
-            <artifactId>sql2o</artifactId>
-            <version>1.5.4</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.20</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-core</artifactId>
+            <version>3.20.1</version>
         </dependency>
 
         <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.1-901.jdbc4</version>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-sqlobject</artifactId>
+            <version>3.20.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-postgres</artifactId>
+            <version>3.20.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-jodatime2</artifactId>
+            <version>3.20.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -144,8 +149,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler.plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>11</release>
                 </configuration>
             </plugin>
 

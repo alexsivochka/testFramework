@@ -10,7 +10,7 @@ public class StepsLogger implements StepLifecycleListener, TestLifecycleListener
 
     @Override
     public void beforeStepStop(final StepResult result) {
-        log.info("Finishing step:" + result.getName());
+        log.info(String.format("Finishing step: %s", result.getName()));
     }
 }
 

@@ -33,7 +33,8 @@ public class ChromeDriverProvider implements WebDriverProvider {
         chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
 
         ChromeOptions options = new ChromeOptions();
-        options.addExtensions(Paths.get("extensionProxy.crx").toFile());
+//        options.addExtensions(Paths.get("extensionProxy.crx").toFile());
+//        options.addArguments("load-extension=" + System.getProperty("user.dir") + "/src/main/java/at/utils/extensionProxy");
         options.setExperimentalOption("prefs", chromePrefs);
         options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.ACCEPT);
         options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);

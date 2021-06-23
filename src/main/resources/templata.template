@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Build from Jenkisn</title>
+    <style type="text/css">
+        .content{width:720px;background-color:white;margin-left: auto; margin-right: auto ;}
+        .round_border{margin-bottom:5px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;margin-top:0;font-size:14px;padding:6px;border:1px solid #ccc}
+        .status{background-color:#343434;font-size:28px;font-weight:bold;color:white;width:720px;height:52px;margin-bottom:18px;text-align:center;vertical-align:middle;border-collapse:collapse;background-repeat:no-repeat}
+        .status .info{color:white!important;text-shadow:0 -1px 0 rgba(0,0,0,0.3);font-size:20px;line-height:36px;padding:6px 0}
+        .main   img{width:38px;margin-right:16px;height:38px}
+        .main table{font-size:14px;}
+        .main table th{text-align:left;}
+        .bottom-message {font-size:13px;color:#aaa;line-height:18px;text-align:center}
+        .section {width: 100%; border: thin black;}
+        .td-title-tests {font-weight: bold; text-align: center;}
+        .td-value-tests {text-align: center;}
+        .td-value-tests-fail {color: red;}
+        .td-value-tests-pass {color: red;}
+        .bottom-message {font-size:13px;color:#aaa;line-height:18px;font-style: italic;text-align:right}
+    </style>
+</head>
+<body>
+<div class="content round_border">
+    <div class="status">
+        <p class="info"><%= build.result.toString() == "SUCCESS" ? 'Всі тести завершилися успішно!' : 'Є тести які не пройшли, мають бути проаналізовані' %>
+        </p>
+    </div>
+
+    <div class="main round_border">
+        <table>
+            <tbody>
+            <tr>
+                <th>Проект:</th>
+                <td>${project.name}</td>
+            </tr>
+
+            <tr>
+                <th>Build-статус:</th>
+                <% if (build.result.toString() != "SUCCESS") { %>
+                <td class="td-value-tests-fail">${build.result}</td>
+                <% } else { %>
+                <td class="td-value-tests-fail">${build.result}</td>
+                <% } %>
+            </tr>
+
+            <tr>
+                <th>Ініціатор запуску:</th>
+                <td> <% build.causes.each() { cause -> %> ${cause.shortDescription} <%  } %></td>
+            </tr>
+            <tr>
+                <th>Посиляння на build:</th>
+                <td >
+                    <a href="${rooturl}${build.url}">збірка на Jenkins</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Посиляння на детальний звіт ${build.displayName}:</th>
+                <td>
+                    <a href="${rooturl}${build.url}allure">переглянути детальний звіт в Allure</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Час запуску:</th>
+                <td>${it.timestampString}</td>
+            </tr>
+            <tr>
+                <th>Тривалість виконання:</th>
+                <td>${build.durationString}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ALLURE REPORT -->
+    <%
+
+    def total =	TEST_COUNTS(var: 'total')
+    def fail =	TEST_COUNTS(var: 'fail')
+    def pass = TEST_COUNTS(var: 'pass')
+    def skip = TEST_COUNTS(var: 'skip')
+
+    def lastAllureReportBuildAction = build.getAction(ru.yandex.qatools.allure.jenkins.AllureReportBuildAction.class)
+    def lastAllureBuildAction = build.getAction(ru.yandex.qatools.allure.jenkins.AllureBuildAction.class)
+
+    if (lastAllureReportBuildAction) {
+    allureResultsUrl = "${rooturl}${build.url}allure"
+    allureLastBuildSuccessRate = String.format("%.2f", lastAllureReportBuildAction.getPassedCount() * 100f / lastAllureReportBuildAction.getTotalCount())
+
+
+    }
+    if (total) {
+    %>
+
+    <div class="status">
+        <p class="info">Результати тестів</p>
+    </div>
+    <div class="main round_border">
+
+        <table class="section">
+            <tr>
+                <td class="td-title-tests">Кількість тестів</td>
+                <td class="td-title-tests">Успішні</td>
+                <td class="td-title-tests">Не пройшли</td>
+                <td class="td-title-tests">Пропущені</td>
+
+            </tr>
+            <tr>
+                <td class="td-value-tests">${total}</td>
+                <td class="td-value-tests" >${pass}</td>
+                <td class="td-value-tests td-value-tests-fail">${fail}</td>
+                <td class="td-value-tests">${skip}</td>
+            </tr>
+        </table>
+
+    </div>
+    <% } %>
+</body>
+</html>
