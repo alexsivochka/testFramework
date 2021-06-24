@@ -51,11 +51,11 @@ public class SetUpAndTearDown {
         open(config.homePage());
     }
 
-    @AfterTest(alwaysRun = true)
-    public void afterClassMethod() {
-        Selenide.clearBrowserCookies();
-        Selenide.clearBrowserLocalStorage();
-    }
+//    @AfterTest(alwaysRun = true)
+//    public void afterClassMethod() {
+//        Selenide.clearBrowserCookies();
+//        Selenide.clearBrowserLocalStorage();
+//    }
 
     @BeforeSuite(alwaysRun = true)
     void deleteOldDirs() throws IOException {
