@@ -8,6 +8,7 @@ import at.utils.listeners.AllureOnFailListener;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
 import org.aeonbits.owner.ConfigFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -23,21 +24,19 @@ public class TestSuite extends SetUpAndTearDown {
 
     private final SimpleConfig config = ConfigFactory.create(SimpleConfig.class, System.getProperties());
 
-    @Test(priority = 10, description = "Test")
-    public void screenTest() {
-        PostgreRequests pr = new PostgreRequests();
-        Document val2 = pr.getDocByCpCode("UA4000207880");
-        System.out.println(val2);
+    @Test(priority = 10, description = "TestShouldPass")
+    public void testShouldPass() {
+        Assert.assertTrue(true);
+    }
 
-        System.out.println("---------------------------");
+    @Test(priority = 20, description = "TestShouldFail")
+    public void testShouldFail() {
+        Assert.assertTrue(false);
+    }
 
-        List<Document> ls = pr.getAll();
-        ls.forEach(System.out::println);
-
-        System.out.println("---------------------------");
-
-        double cpCode1 = pr.getDocBidPriceByCpCode("UA4000207880");
-        System.out.println(cpCode1);
+    @Test(priority = 30, description = "TestShouldSkip")
+    public void testShouldSkip() {
+        Assert.assertTrue(true);
     }
 
 }
