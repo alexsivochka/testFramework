@@ -34,7 +34,7 @@ public class TestSuite extends SetUpAndTearDown {
         Assert.assertTrue(false);
     }
 
-    @Test(priority = 30, description = "TestShouldSkip")
+    @Test(priority = 30, description = "TestShouldSkip", dependsOnMethods = "testShouldFail")
     public void testShouldSkip() {
         Assert.assertTrue(true);
     }
