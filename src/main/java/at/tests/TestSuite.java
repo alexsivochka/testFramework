@@ -7,6 +7,7 @@ import at.entity.Document;
 import at.utils.listeners.AllureOnFailListener;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
+import lombok.extern.log4j.Log4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -20,12 +21,14 @@ import static com.codeborne.selenide.Selenide.open;
 
 @Listeners(AllureOnFailListener.class)
 @Feature(value = "Тест съют")
+@Log4j
 public class TestSuite extends SetUpAndTearDown {
 
     private final SimpleConfig config = ConfigFactory.create(SimpleConfig.class, System.getProperties());
 
     @Test(priority = 10, description = "TestShouldPass")
     public void testShouldPass() {
+        log.info("Слово Ігнат повинно відображатися коректно");
         Assert.assertEquals("Ігнат", "Пидор");
     }
 
