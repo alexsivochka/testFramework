@@ -28,8 +28,7 @@ public class TestSuite extends SetUpAndTearDown {
 
     @Test(priority = 10, description = "TestShouldPass")
     public void testShouldPass() {
-        log.info("Слово Ігнат повинно відображатися коректно");
-        Assert.assertEquals("Ігнат", "Пидор");
+        Assert.assertTrue(true);
     }
 
     @Test(priority = 20, description = "TestShouldFail")
