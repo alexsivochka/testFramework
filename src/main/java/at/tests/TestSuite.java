@@ -33,7 +33,7 @@ public class TestSuite {
 
     @Test(priority = 20, description = "TestShouldFail")
     public void testShouldFail() {
-        Assert.assertTrue(false);
+        Assert.assertTrue(true);
     }
 
     @Test(priority = 30, description = "TestShouldSkip", dependsOnMethods = "testShouldFail")
