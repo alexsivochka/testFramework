@@ -22,7 +22,7 @@ import static com.codeborne.selenide.Selenide.open;
 @Listeners(AllureOnFailListener.class)
 @Feature(value = "Тест съют")
 @Log4j
-public class TestSuite extends SetUpAndTearDown {
+public class TestSuite {
 
     private final SimpleConfig config = ConfigFactory.create(SimpleConfig.class, System.getProperties());
 
