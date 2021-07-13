@@ -26,19 +26,19 @@ public class TestSuite {
 
     private final SimpleConfig config = ConfigFactory.create(SimpleConfig.class, System.getProperties());
 
-    @Test(priority = 10, description = "TestShouldPass")
+    @Test(priority = 10, description = "Этот тест должен был пройти")
     public void testShouldPass() {
-        Assert.assertTrue(true);
+        Assert.assertTrue(false);
     }
 
-    @Test(priority = 20, description = "TestShouldFail")
+    @Test(priority = 20, description = "Этот тест должен был упасть")
     public void testShouldFail() {
         Assert.assertTrue(false);
     }
 
-    @Test(priority = 30, description = "TestShouldSkip", dependsOnMethods = "testShouldFail")
+    @Test(priority = 30, description = "Этот тест должен быть пропущен", dependsOnMethods = "testShouldFail")
     public void testShouldSkip() {
-        Assert.assertTrue(true);
+        Assert.assertTrue(false);
     }
 
 }
