@@ -1,23 +1,13 @@
 package at.tests;
 
-import at.SetUpAndTearDown;
 import at.SimpleConfig;
-import at.database.PostgreRequests;
-import at.entity.Document;
 import at.utils.listeners.AllureOnFailListener;
-import com.codeborne.selenide.Condition;
 import io.qameta.allure.Feature;
 import lombok.extern.log4j.Log4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import java.util.List;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 @Listeners(AllureOnFailListener.class)
 @Feature(value = "Тест съют")
@@ -38,6 +28,16 @@ public class TestSuite {
 
     @Test(priority = 30, description = "Этот тест должен быть пропущен", dependsOnMethods = "testShouldFail")
     public void testShouldSkip() {
+        Assert.assertTrue(false);
+    }
+
+    @Test(priority = 20, description = "Этот тест должен был упасть 1")
+    public void testShouldFail1() {
+        Assert.assertTrue(false);
+    }
+
+    @Test(priority = 20, description = "Этот тест должен был упасть 2")
+    public void testShouldFail2() {
         Assert.assertTrue(false);
     }
 
