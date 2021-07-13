@@ -41,4 +41,14 @@ public class TestSuite {
         Assert.assertTrue(false);
     }
 
+    @Test(priority = 20, description = "Этот тест должен был упасть 3")
+    public void testShouldFail3() {
+        Assert.assertTrue(false);
+    }
+
+    @Test(priority = 20, description = "Этот тест должен был упасть 4")
+    public void testShouldFail4() {
+        Assert.assertTrue(false);
+    }
+
 }
