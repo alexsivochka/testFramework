@@ -38,7 +38,7 @@ public class TestSuite {
 
     @Test(priority = 20, description = "Этот тест должен был упасть 2")
     public void testShouldFail2() {
-        Assert.assertTrue(false);
+        Assert.assertEquals("Первый текст", "Второй текст не равен первому");
     }
 
     @Test(priority = 20, description = "Этот тест должен был упасть 3")
@@ -53,7 +53,7 @@ public class TestSuite {
 
     @Test(priority = 20, description = "Этот тест должен был упасть 5")
     public void testShouldFail5() {
-        Assert.assertTrue(false);
+        Assert.assertEquals("Первый текст", "Второй текст не равен первому");
     }
 
     @Test(priority = 20, description = "Этот тест должен был упасть 6")
