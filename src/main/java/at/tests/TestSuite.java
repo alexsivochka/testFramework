@@ -18,7 +18,7 @@ public class TestSuite {
 
     @Test(priority = 10, description = "Этот тест должен был пройти")
     public void testShouldPass() {
-        Assert.assertTrue(false);
+        Assert.assertTrue(true);
     }
 
     @Test(priority = 20, description = "Этот тест должен был упасть")
