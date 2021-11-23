@@ -22,7 +22,8 @@ public class Document {
     private double askPrice;
     @ColumnName("ask_yield")
     private int askYield;
-    private String yield;
+    @ColumnName("yield")
+    private String yieldVal;
     @ColumnName("datmod")
     private Timestamp dateMod;
     private LocalDate date;

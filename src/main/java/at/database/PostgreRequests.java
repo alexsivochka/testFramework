@@ -15,25 +15,19 @@ import java.util.List;
 public class PostgreRequests extends DatabaseConnection implements DocumentDAO {
 
     private final SimpleConfig config = ConfigFactory.create(SimpleConfig.class, System.getProperties());
-    private Jdbi jdbi = getConnection(config.dataBaseUrl(), config.userLogin(), config.userPassword())
+    private final Jdbi jdbi = getConnection(config.dataBaseUrl(), config.userLogin(), config.userPassword())
             .installPlugin(new SqlObjectPlugin());
 
 
     @Override
     @Step("Получить из БД данные по всем документам")
     public List<Document> getAll() {
-//        jdbi.installPlugin(new SqlObjectPlugin()).onDemand(DocumentDAO.class);
-        List<Document> documents = jdbi.withExtension(DocumentDAO.class, dao -> dao.getAll());
-        return documents;
+        return jdbi.withExtension(DocumentDAO.class, DocumentDAO::getAll);
     }
 
     @Override
     public Document getDocByCpCode(String cpCode) {
-//        jdbi.installPlugin(new SqlObjectPlugin())
-//                .registerRowMapper(FieldMapper.factory(Document.class))
-//                .onDemand(DocumentDAO.class);
-        Document document = jdbi.withExtension(DocumentDAO.class, dao -> dao.getDocByCpCode(cpCode));
-        return document;
+        return jdbi.withExtension(DocumentDAO.class, dao -> dao.getDocByCpCode(cpCode));
     }
 
     @Step("Получить из БД данные поля bid_price документа с cpcode - {cpCode}")

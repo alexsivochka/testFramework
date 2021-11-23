@@ -27,7 +27,7 @@ public class CookieUtil {
 
 
     public List<Cookie> getCookiesForApiFromBrowser() {
-        List<Cookie> cookiesForRequestRestAssured = new ArrayList();
+        List<Cookie> cookiesForRequestRestAssured = new ArrayList<>();
         List<Cookie> cookiesFromBrowser = getCookie();
         for (Cookie cookieSelenium : cookiesFromBrowser) {
             Cookie cookieSeleniumRestAssured =

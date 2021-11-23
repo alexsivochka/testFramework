@@ -1,4 +1,4 @@
-package at.webDriverProviders;
+package at.webdriverproviders;
 
 import at.SimpleConfig;
 import org.aeonbits.owner.ConfigFactory;
@@ -15,7 +15,9 @@ import java.util.HashMap;
 
 public class SettingsBrowser {
 
-    private final static SimpleConfig CV = ConfigFactory.create(SimpleConfig.class);
+    private SettingsBrowser() { }
+
+    private static final SimpleConfig CV = ConfigFactory.create(SimpleConfig.class);
 
     public static FirefoxOptions getFirefoxOptions() {
         FirefoxProfile firefoxProfile = new FirefoxProfile();

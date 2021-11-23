@@ -1,7 +1,7 @@
-package at.webDriverProviders;
+package at.webdriverproviders;
 
 import com.codeborne.selenide.WebDriverProvider;
-import io.github.bonigarcia.wdm.managers.FirefoxDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -24,7 +24,7 @@ public class FirefoxDriverProvider implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
-        FirefoxDriverManager.firefoxdriver().setup();
+        WebDriverManager.firefoxdriver().setup();
 
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "target/geckodriverlog.txt");
 
@@ -82,7 +82,7 @@ public class FirefoxDriverProvider implements WebDriverProvider {
         FirefoxDriver driver = new FirefoxDriver(options);
 
         System.setProperty("browser", options.getBrowserName() + " " + driver.getCapabilities().getCapability("browserVersion").toString());
-        System.setProperty("driver.version", FirefoxDriverManager.firefoxdriver().getDownloadedDriverVersion());
+        System.setProperty("driver.version", WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
 
         return driver;
     }
@@ -90,9 +90,9 @@ public class FirefoxDriverProvider implements WebDriverProvider {
 
     private void addExtensions(FirefoxProfile firefoxProfile) {
         File[] fileList = new File("src/main/resources").listFiles();
-        Arrays.stream(fileList).filter(file -> file.isFile())
+        Arrays.stream(fileList).filter(File::isFile)
                 .filter(file -> file.getName().endsWith(".xpi"))
-                .forEach(file -> firefoxProfile.addExtension(file));
+                .forEach(firefoxProfile::addExtension);
     }
 
 }

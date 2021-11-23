@@ -14,6 +14,8 @@ import org.apache.log4j.Logger;
 
 public class CustomAttachment {
 
+    private CustomAttachment() {}
+
     static Logger logger = Logger.getLogger(CustomAttachment.class);
 
     /** Добавить в отчет Аллюр призвольное описание шага */
@@ -41,7 +43,7 @@ public class CustomAttachment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new byte[0];
     }
 
 }

@@ -1,5 +1,6 @@
 package at.utils;
 
+import at.exception.RegexpException;
 import lombok.extern.log4j.Log4j;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +16,7 @@ public class RegularExpression {
             result = matcher.group(groupNumber);
         }
         if (result==null || result.isEmpty()) {
-            throw new RuntimeException("Нет данных согласно паттерну: " + patterSearch + " Поиск по тексту: " + strSearch);
+            throw new RegexpException("Нет данных согласно паттерну: " + patterSearch + " Поиск по тексту: " + strSearch);
         }
         return result;
     }
@@ -30,17 +31,17 @@ public class RegularExpression {
         return result;
     }
 
-    public String matches(String text, String regex) {
-        String result = "";
+    public static String matches(String text, String regex) {
+        StringBuilder result = new StringBuilder();
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(text);
         while (m.find()) {
-            result += m.group();
+            result.append( m.group());
         }
-        if (result.isEmpty()) {
-            throw new RuntimeException("Нет данных согласно паттерну: " + regex + " Поиск по тексту: " + text);
+        if (result.toString().isBlank()) {
+            throw new RegexpException("Нет данных согласно паттерну: " + regex + " Поиск по тексту: " + text);
         }
-        return result;
+        return result.toString();
     }
 
 }

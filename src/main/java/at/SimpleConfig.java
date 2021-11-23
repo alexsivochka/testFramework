@@ -13,7 +13,7 @@ public interface SimpleConfig extends Config {
     String browser();
     String remoteBrowserVersion();
     String homePage();
-    String totp_Url();
+    String totpUrl();
     String docApiUrl();
     String userLogin();
     String userPassword();

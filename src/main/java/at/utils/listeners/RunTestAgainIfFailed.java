@@ -7,14 +7,14 @@ import org.testng.ITestResult;
 
 public class RunTestAgainIfFailed implements IRetryAnalyzer {
 
-    private final static Logger LOGGER = Logger.getLogger(RunTestAgainIfFailed.class);
+    private static final Logger LOGGER = Logger.getLogger(RunTestAgainIfFailed.class);
 
     private int repeatCounter = 0;
-    private final int MAX_COUNT = 3;
 
     @Override
     public boolean retry(ITestResult iTestResult) {
-        if (repeatCounter < MAX_COUNT) {
+        int maxCount = 3;
+        if (repeatCounter < maxCount) {
             repeatCounter++;
             LOGGER.info("***  Повторный перезапуск упавшего теста  ***");
             return true; // перезапускаем тест

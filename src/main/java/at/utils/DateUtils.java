@@ -7,6 +7,9 @@ import java.util.Locale;
 
 public class DateUtils {
 
+    private DateUtils() {
+    }
+
     public static String convertDateToFormat(String value, String patternOf, String patternTo) {
         String result = null;
         try {

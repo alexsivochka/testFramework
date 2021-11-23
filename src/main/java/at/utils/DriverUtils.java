@@ -18,6 +18,8 @@ import java.io.IOException;
 
 public final class DriverUtils {
 
+    private DriverUtils() { }
+
     @Attachment(type = "image/png")
     public static byte[] screenshot() throws IOException {
         try {
@@ -29,14 +31,6 @@ public final class DriverUtils {
 
     @Attachment(type = "image/png")
     public static byte[] screenshotFull() throws IOException {
-/*        *//** Вариант снятия скриншота 1 *//*
-        Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.viewportPasting(100))
-                .takeScreenshot(WebDriverRunner.getWebDriver());
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(screenshot.getImage(),  "png", byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();*/
-
         /** Вариант снятия скриншота 2 */
         try {
             BufferedImage bufferedImage = Shutterbug
@@ -47,6 +41,16 @@ public final class DriverUtils {
         } catch (Exception e) {
             return Files.toByteArray(new File("src/main/resources/error.png").getAbsoluteFile());
         }
+    }
+
+    @Attachment(type = "image/png")
+    public static byte[] screenshotFullByAshot() throws IOException {
+        Screenshot screenshot = new AShot()
+                .shootingStrategy(ShootingStrategies.viewportPasting(100))
+                .takeScreenshot(WebDriverRunner.getWebDriver());
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(screenshot.getImage(),  "png", byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
 
 }

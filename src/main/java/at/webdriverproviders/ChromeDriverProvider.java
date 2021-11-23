@@ -1,7 +1,7 @@
-package at.webDriverProviders;
+package at.webdriverproviders;
 
 import com.codeborne.selenide.WebDriverProvider;
-import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +24,7 @@ public class ChromeDriverProvider implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
-//        ChromeDriverManager.chromedriver().version("85").setup();
-        ChromeDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
 
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -44,14 +42,14 @@ public class ChromeDriverProvider implements WebDriverProvider {
         ChromeDriver driver = new ChromeDriver(options);
 
         System.setProperty("browser", options.getBrowserName() + " " + driver.getCapabilities().getVersion());
-        System.setProperty("driver.version", ChromeDriverManager.chromedriver().getDownloadedDriverVersion());
+        System.setProperty("driver.version", WebDriverManager.chromedriver().getDownloadedDriverVersion());
 
         return driver;
     }
 
     private List<File> listExtensions() {
         File[] fileList = new File("src/main/resources").listFiles();
-        return Arrays.stream(fileList).filter(file -> file.isFile())
+        return Arrays.stream(fileList).filter(File::isFile)
                 .filter(file -> file.getName().endsWith(".crx"))
                 .collect(Collectors.toList());
     }

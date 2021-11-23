@@ -1,5 +1,6 @@
-package at.webDriverProviders;
+package at.webdriverproviders;
 
+import at.exception.RemoteDriverConnectionException;
 import com.codeborne.selenide.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,7 +17,7 @@ public class RemoteDriverBrowser implements WebDriverProvider {
 
         try {
             RemoteWebDriver driver = new RemoteWebDriver(
-                    URI.create("http://10.42.13.27:4444/wd/hub").toURL(),
+                    URI.create("http://localhost:4444/wd/hub").toURL(), //URI.create("http://10.56.128.12:4444/wd/hub").toURL(),
                     SettingsBrowser.getDesiredCapabilities()
             );
             driver.setFileDetector(new LocalFileDetector());
@@ -24,7 +25,7 @@ public class RemoteDriverBrowser implements WebDriverProvider {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Не удалось подключиться к url");
+            throw new RemoteDriverConnectionException("Не удалось подключиться к url");
         }
     }
 
