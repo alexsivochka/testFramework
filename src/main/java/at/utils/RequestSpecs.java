@@ -7,12 +7,12 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 
 import static io.restassured.specification.ProxySpecification.host;
 
-@Log4j
+@Slf4j
 public class RequestSpecs {
 
     SimpleConfig config = ConfigFactory.create(SimpleConfig.class, System.getProperties());

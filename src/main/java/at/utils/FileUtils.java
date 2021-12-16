@@ -1,6 +1,9 @@
 package at.utils;
 
-import lombok.extern.log4j.Log4j;
+import at.SetUpAndTearDown;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.File;
@@ -9,8 +12,9 @@ import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-@Log4j
 public class FileUtils {
+
+    static Logger log = LogManager.getLogger(FileUtils.class);
 
     public static File getFileFromResource(String fileName){
         ClassLoader classLoader = FileUtils.class.getClassLoader();

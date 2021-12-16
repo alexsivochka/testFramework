@@ -1,15 +1,19 @@
 package at.utils.listeners;
 
 import at.utils.DriverUtils;
-import lombok.extern.log4j.Log4j;
+import at.utils.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.IOException;
 
-@Log4j
 public final class AllureOnFailListener implements ITestListener {
+
+    static Logger log = LogManager.getLogger(FileUtils.class);
+
     @Override
     public void onTestStart(final ITestResult result) {
         log.info(String.format("\033[30;1m TEST - %s START\" \033[0m", result.getMethod().getDescription()));

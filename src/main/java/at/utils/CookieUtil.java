@@ -1,7 +1,7 @@
 package at.utils;
 
 import com.codeborne.selenide.WebDriverRunner;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Cookie;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Log4j
+@Slf4j
 public class CookieUtil {
 
     public List<Cookie> getCookie() {

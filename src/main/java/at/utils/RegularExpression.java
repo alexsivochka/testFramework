@@ -1,11 +1,12 @@
 package at.utils;
 
 import at.exception.RegexpException;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Log4j
+@Slf4j
 public class RegularExpression {
 
     public String getTextMatch(String strSearch, String patterSearch, int groupNumber) {

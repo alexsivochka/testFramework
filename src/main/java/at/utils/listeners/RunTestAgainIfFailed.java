@@ -1,13 +1,14 @@
 package at.utils.listeners;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 
 public class RunTestAgainIfFailed implements IRetryAnalyzer {
 
-    private static final Logger LOGGER = Logger.getLogger(RunTestAgainIfFailed.class);
+    static Logger log = LogManager.getLogger(RunTestAgainIfFailed.class);
 
     private int repeatCounter = 0;
 
@@ -16,10 +17,10 @@ public class RunTestAgainIfFailed implements IRetryAnalyzer {
         int maxCount = 3;
         if (repeatCounter < maxCount) {
             repeatCounter++;
-            LOGGER.info("***  Повторный перезапуск упавшего теста  ***");
+            log.info("***  Повторный перезапуск упавшего теста  ***");
             return true; // перезапускаем тест
         }
-        if (repeatCounter > 0) LOGGER.error("ТЕСТ ПРОВАЛЕН ТРИЖДЫ!!!");
+        if (repeatCounter > 0) log.error("ТЕСТ ПРОВАЛЕН ТРИЖДЫ!!!");
         repeatCounter = 0;
         return false;
     }

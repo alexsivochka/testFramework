@@ -6,9 +6,9 @@ import at.webdriverproviders.RemoteDriverBrowser;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -23,9 +23,9 @@ import static com.codeborne.selenide.Selenide.open;
 import static java.lang.System.getProperty;
 import static java.util.Optional.ofNullable;
 
+@Slf4j
 public class SetUpAndTearDown {
 
-    private static final Logger LOGGER = Logger.getLogger(SetUpAndTearDown.class.getName());
     private static final SimpleConfig config = ConfigFactory.create(SimpleConfig.class,  System.getProperties());
     private static final String BROWSER_NAME = config.browser();
 
@@ -85,7 +85,7 @@ public class SetUpAndTearDown {
 
             props.store(fos, "See https://github.com/allure-framework/allure-app/wiki/Environment");
         } catch (IOException e) {
-            LOGGER.error("IO problem when writing allure properties file", e);
+            log.error("IO problem when writing allure properties file", e);
         }
     }
 }

@@ -10,18 +10,18 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.apache.log4j.Logger;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class CustomAttachment {
 
     private CustomAttachment() {}
 
-    static Logger logger = Logger.getLogger(CustomAttachment.class);
-
     /** Добавить в отчет Аллюр призвольное описание шага */
     @Step("{stepName}")
     public static void addStepToTheReport(String stepName)  {
-        logger.info(stepName);
+        log.info(stepName);
     }
 
     /** Добавить в отчет Аллюр файл по имени */
